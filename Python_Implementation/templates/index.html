@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusZip | Intelligent Compression</title>
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Background Elements -->
+    <div class="background-grid"></div>
+    <div class="background-globes">
+        <div class="globe g1"></div>
+        <div class="globe g2"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="brand-section">
+                <span class="material-icons-round logo-icon">account_tree</span>
+                <div class="title-group">
+                    <h1>NexusZip</h1>
+                </div>
+                <div style="margin-left: auto;">
+                    <a href="/simulator" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.8rem; border-radius: 8px;">
+                        <span class="material-icons-round">insights</span> Simulator
+                    </a>
+                </div>
+            </div>
+            <p class="tagline">Data Structures & Algorithms Project: LZW + Huffman Implementation</p>
+        </header>
+
+        <!-- TOP HERO LANDING -->
+        <div class="hero-block end-hero" style="margin-top: 6rem; margin-bottom: 6rem;">
+            <h2 style="font-size: 4rem;">Intelligent Data Compression</h2>
+            <p style="font-size: 1.3rem; max-width: 650px; margin: 0 auto;">Discover how modern algorithms squeeze massive amounts of data into microscopic binary payloads. Scroll down to learn the secrets of structural reduction and entropy minimization.</p>
+            <div class="scroll-indicator" style="margin-top: 4rem;">
+                <span class="material-icons-round">keyboard_double_arrow_down</span>
+            </div>
+        </div>
+
+        <!-- LZW EXPLANATION SECTION -->
+        <section class="feature-section hidden-node" id="lzwSection">
+            <div class="feature-grid">
+                <div class="feature-content">
+                    <h2 class="lzw-title">LZW Compression</h2>
+                    <p>Lempel-Ziv-Welch (LZW) is a dictionary-based algorithm. Instead of analyzing character frequencies, it looks for <strong>repeating patterns</strong> in the data stream.</p>
+                    <p>As LZW reads the data, it builds a dictionary on the fly. When it sees a repeating word or sequence (like "APPLE"), it completely removes that string and replaces it with a single, unique integer code. This dramatically shrinks files containing repetitive text.</p>
+                </div>
+                <div class="feature-visual">
+                    <div style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">Dynamic Dictionary Built In-Line</div>
+                    <table class="dict-table">
+                        <thead>
+                            <tr>
+                                <th>Sequence Mapped</th>
+                                <th>Integer Code Generated</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>A</td><td>65 (ASCII)</td></tr>
+                            <tr><td>P</td><td>80 (ASCII)</td></tr>
+                            <tr><td>AP</td><td><span class="text-lzw" style="font-weight: bold;">256</span> (New Mapping)</td></tr>
+                            <tr><td>PP</td><td><span class="text-lzw" style="font-weight: bold;">257</span> (New Mapping)</td></tr>
+                            <tr><td>PLE</td><td><span class="text-lzw" style="font-weight: bold;">258</span> (New Mapping)</td></tr>
+                            <tr><td>APPLE</td><td><span class="text-lzw" style="font-weight: bold;">259</span> (New Mapping)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- HUFFMAN EXPLANATION SECTION -->
+        <section class="feature-section hidden-node" id="huffmanSection" style="padding-top: 0;">
+            <div class="feature-grid reverse">
+                <div class="feature-content">
+                    <h2 class="huffman-title">Huffman Coding</h2>
+                    <p>Huffman is an entropy-based algorithm. It analyzes the exact frequency of every byte and builds a mathematical binary tree to minimize bits.</p>
+                    <p>Traditional encodings use a fixed 8 bits for every character. Huffman shatters this limitation: it assigns the <strong>shortest possible binary codes</strong> to the most frequent characters, and longer codes to rare ones. The result is a mathematically proven absolute minimum bitstream.</p>
+                </div>
+                <div class="feature-visual" style="text-align: center;">
+                    <div style="margin-bottom: 2rem; color: var(--text-muted); font-size: 0.9rem;">Frequency Based Bit-Assignment</div>
+                    <div class="code-preview block" style="width: 100%; text-align: left; padding: 2rem;">
+                        <span style="color: #64748b; font-size: 0.9rem;">// Frequent Characters (Shortest Bits)</span><br>
+                        'E' (Freq: 45) &rarr; <span class="text-huffman" style="font-weight: bold; font-size: 1.3rem;">0</span> <span style="color: #64748b;">(1 bit)</span><br>
+                        'T' (Freq: 30) &rarr; <span class="text-huffman" style="font-weight: bold; font-size: 1.3rem;">10</span> <span style="color: #64748b;">(2 bits)</span><br><br>
+                        <span style="color: #64748b; font-size: 0.9rem;">// Rare Characters (Longer Bits)</span><br>
+                        'Z' (Freq: 1)  &rarr; <span class="text-huffman" style="font-weight: bold; font-size: 1.3rem;">1110</span> <span style="color: #64748b;">(4 bits)</span><br>
+                        'X' (Freq: 1)  &rarr; <span class="text-huffman" style="font-weight: bold; font-size: 1.3rem;">1111</span> <span style="color: #64748b;">(4 bits)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HYBRID COMPRESSION TIMELINE -->
+        <section class="timeline-section" id="hybridTimeline">
+            
+            <div class="hero-block">
+                <h2>The Hybrid Compression Pipeline</h2>
+                <p>Scroll down to trace the journey of raw data as it passes through the ultimate two-stage optimizer: LZW followed by Huffman.</p>
+                <div class="scroll-indicator">
+                    <span class="material-icons-round">keyboard_double_arrow_down</span>
+                </div>
+            </div>
+
+            <div class="timeline-container">
+                <!-- Center Line -->
+                <div class="timeline-line"></div>
+
+                <!-- Node 1: Raw Data -->
+                <div class="timeline-node left hidden-node">
+                    <div class="node-badge">1</div>
+                    <div class="node-content glass-card">
+                        <h3>The Raw Input</h3>
+                        <p>We start with raw string data containing sequences that repeat over time. Standard characters require a fixed 8 bits each regardless of frequency.</p>
+                        <div class="code-preview block">
+                            Raw Text: 
+                            <br><span style="color: #fff; font-weight:bold;">BEEP BOOP BEEP BOOP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Node 2: LZW -->
+                <div class="timeline-node right hidden-node">
+                    <div class="node-badge lzw-badge">2</div>
+                    <div class="node-content glass-card">
+                        <h3 class="text-lzw">Phase I: LZW Pattern Mapping</h3>
+                        <p>As data passes through LZW, it dynamically builds a dictionary. Repeating sequences like "BEEP " are reduced to single abstract integer codes. Sequence redundancy is mathematically destroyed.</p>
+                        <div class="code-preview block">
+                            Dictionary Output Array:
+                            <br><span class="text-lzw">[66, 69, 69, 80, 256, 79, 79, 259]</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Node 3: Huffman -->
+                <div class="timeline-node left hidden-node">
+                    <div class="node-badge huffman-badge">3</div>
+                    <div class="node-content glass-card">
+                        <h3 class="text-huffman">Phase II: Huffman Bit Minimization</h3>
+                        <p>Next, Huffman consumes those exact LZW integers. It calculates their overall frequency and builds a binary tree. The most frequently produced LZW codes now get the absolute shortest bit lengths.</p>
+                        <div class="code-preview block">
+                            Variable-Length Bits Assigned:
+                            <br><span class="text-huffman">Token 256 &rarr; '01' | Token 69 &rarr; '10'</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Node 4: Synergy -->
+                <div class="timeline-node right hidden-node">
+                    <div class="node-badge final-badge">4</div>
+                    <div class="node-content glass-card">
+                        <h3>The True Synergy</h3>
+                        <p>By chaining them, LZW handles macro-patterns (words/phrases) and Huffman handles micro-efficiency (raw individual bits). The output is a highly compacted binary payload.</p>
+                        <div class="code-preview block">
+                            Final Size: <span style="color:#10b981; font-weight:bold;">Absolute Minimization Achieved ✨</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-block end-hero hidden-node">
+                <h2>Ready to Simulate?</h2>
+                <a href="/simulator" class="btn btn-primary" style="display:inline-flex; width:auto; padding:1.2rem 2.5rem; margin-top:1rem; font-size:1.1rem; border-radius:12px;">
+                    Launch Interactive Sandbox
+                </a>
+            </div>
+
+        </section>
+
+
+
+    <!-- Script at the end -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
